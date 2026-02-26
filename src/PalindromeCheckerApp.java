@@ -1,3 +1,7 @@
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.Queue;
+
 /**
  * ============================================================
  * MAIN CLASS - UseCase1PalindromeApp
@@ -19,7 +23,7 @@
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 1.0
+ * @version 6.0
  */
 
 public class PalindromeCheckerApp {
