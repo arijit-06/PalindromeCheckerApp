@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
  * ============================================================
  * MAIN CLASS - UseCase1PalindromeApp
@@ -19,33 +21,35 @@
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 1.0
+ * @version 5.0
  */
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         
         System.out.println("WELCOME TO PALINDROME CHECKER APP MANAGEMENT SYSTEM");
-        System.out.println("version:4.0");
+        System.out.println("version:5.0");
         System.out.println("System instanced successful");
         System.out.println();
 
-        String Palindrome = "racecar";
+        String Palindrome = "racecar", Reversed = "";
         char[] chars = Palindrome.toCharArray();
+        Stack <Character> stack  = new Stack<>();
+        int i = 0, n = chars.length;
 
-        boolean flag = true;
-        int start = 0, end = Palindrome.length()-1;
-
-        while (start < end){
-            if(chars[start] != chars[end]){
-                flag = false;
-                break;
-            }
-            start ++;
-            end --;
+        for(i = 0; i < n; i++){
+            stack.push(chars[i]);
         }
 
-        if (flag)  System.out.println("The string " + Palindrome + " is a palindrome.");
-        else System.out.println("The string " + Palindrome + " is not a palindrome.");
+        while(!stack.empty()){
+            Reversed += stack.pop();
+        }
+
+        if (Palindrome.equals(Reversed)) {
+            System.out.println("The string " + Palindrome + " is palindrome");
+        } else {
+            System.out.println("The string " + Palindrome + " is not a palindrome");
+        }
+
     }
 }
