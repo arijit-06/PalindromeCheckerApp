@@ -1,6 +1,5 @@
 import java.util.LinkedList;
-import java.util.Stack;
-import java.util.Queue;
+import java.util.Deque;
 
 /**
  * ============================================================
@@ -23,14 +22,35 @@ import java.util.Queue;
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 6.0
+ * @version 7.0
  */
 
 public class PalindromeCheckerApp {
+
+    public static boolean isPalindrome(String input) {
+
+        Deque<Character> deque = new LinkedList<>();
+        for (char ch : input.toCharArray()) {
+            deque.addLast(ch);
+        }
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        
+
         System.out.println("WELCOME TO PALINDROME CHECKER APP MANAGEMENT SYSTEM");
-        System.out.println("version:1.0");
+        System.out.println("version:7.0");
         System.out.println("System instanced successful");
+        System.out.println();
+
+        String Palindrome = "racecar";
+
+        if(isPalindrome(Palindrome))    System.out.println("The string is palindrome");
+        else System.out.println("The string is not palindrome");
     }
 }
