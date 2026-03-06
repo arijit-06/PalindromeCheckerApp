@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.lang.classfile.instruction.ReturnInstruction;
 
 /**
  * ============================================================
@@ -22,33 +21,18 @@ import java.util.List;
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 8.0
+ * @version 9.0
  */
 
 public class PalindromeCheckerApp {
 
-    public static boolean isPalindrome(String input) {
-
-
-        int n = input.length();
-        int i =0;
-
-        LinkedList<Character> list = new LinkedList<>();
-        LinkedList<Character> rev = new LinkedList<>();
-
-        for (i = 0; i < n/2; i++) {
-            list.add(input.charAt(i));
-        }
-
-        for (i = 0; i < n/2; i++) {
-            rev.add(input.charAt(n-i-1));
-        }
-
-        for (i = 0; i < n/2; i++) {
-            if (!list.get(i).equals(rev.get(i))) return false;
-        }
-
-        return true;
+    public static boolean isPalindrome(String input, int i) {
+        if(i >= input.length() / 2)
+            return true;
+        else if (input.charAt(i) != input.charAt(input.length()-i-1))
+            return  false;
+        else
+            return isPalindrome(input, i + 1);
     }
 
     public static void main(String[] args) {
@@ -60,12 +44,12 @@ public class PalindromeCheckerApp {
 
         String Palindrome = "racecar";
 
-        if(isPalindrome(Palindrome))    System.out.println("The string " + Palindrome + " is palindrome");
+        if(isPalindrome(Palindrome, 0))    System.out.println("The string " + Palindrome + " is palindrome");
         else System.out.println("The string is " + Palindrome + " not palindrome");
 
         Palindrome = "f1racecar";
 
-        if(isPalindrome(Palindrome))    System.out.println("The string " + Palindrome + "  is palindrome");
+        if(isPalindrome(Palindrome, 0))    System.out.println("The string " + Palindrome + "  is palindrome");
         else System.out.println("The string " + Palindrome + " is not palindrome");
     }
 }
