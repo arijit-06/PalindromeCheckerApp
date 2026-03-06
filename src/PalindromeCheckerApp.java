@@ -23,17 +23,12 @@ import java.util.Deque;
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 12.0
+ * @version 13.0
  */
 
-interface PalindromeStrategy {
-    boolean checkPalindrome(String input);
-}
+public class PalindromeCheckerApp {
 
-
-class StackStrategy implements PalindromeStrategy {
-
-    public boolean checkPalindrome(String input) {
+    public static boolean stackPalindrome(String input) {
 
         Stack<Character> stack = new Stack<>();
 
@@ -49,12 +44,8 @@ class StackStrategy implements PalindromeStrategy {
 
         return true;
     }
-}
 
-
-class DequeStrategy implements PalindromeStrategy {
-
-    public boolean checkPalindrome(String input) {
+    public static boolean dequePalindrome(String input) {
 
         Deque<Character> deque = new ArrayDeque<>();
 
@@ -74,34 +65,60 @@ class DequeStrategy implements PalindromeStrategy {
 
         return true;
     }
-}
 
+    public static boolean twoPointerPalindrome(String input) {
 
-public class PalindromeCheckerApp {
+        int left = 0;
+        int right = input.length() - 1;
+
+        while (left < right) {
+
+            if (input.charAt(left) != input.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
 
         System.out.println("WELCOME TO PALINDROME CHECKER APP MANAGEMENT SYSTEM");
-        System.out.println("version:12.0");
+        System.out.println("version:13.0");
         System.out.println("System instanced successful");
 
-        String word1 = "racecar";
-        String word2 = "hello";
+        String word = "racecar";
 
-        PalindromeStrategy strategy;
+        long start = System.nanoTime();
+        boolean stackResult = stackPalindrome(word);
+        long end = System.nanoTime();
+        long stackTime = end - start;
 
-        strategy = new StackStrategy();
+        start = System.nanoTime();
+        boolean dequeResult = dequePalindrome(word);
+        end = System.nanoTime();
+        long dequeTime = end - start;
 
-        System.out.println("Using Stack Strategy:");
-        System.out.println(word1 + " -> " + strategy.checkPalindrome(word1));
-        System.out.println(word2 + " -> " + strategy.checkPalindrome(word2));
+        start = System.nanoTime();
+        boolean pointerResult = twoPointerPalindrome(word);
+        end = System.nanoTime();
+        long pointerTime = end - start;
 
-        System.out.println();
+        System.out.println("Input String: " + word + "\n");
 
-        strategy = new DequeStrategy();
+        System.out.println("Stack Algorithm:");
+        System.out.println("Result: " + stackResult);
+        System.out.println("Execution Time: " + stackTime + " ns\n");
 
-        System.out.println("Using Deque Strategy:");
-        System.out.println(word1 + " -> " + strategy.checkPalindrome(word1));
-        System.out.println(word2 + " -> " + strategy.checkPalindrome(word2));
+        System.out.println("Deque Algorithm:");
+        System.out.println("Result: " + dequeResult);
+        System.out.println("Execution Time: " + dequeTime + " ns\n");
+
+        System.out.println("Two Pointer Algorithm:");
+        System.out.println("Result: " + pointerResult);
+        System.out.println("Execution Time: " + pointerTime + " ns");
     }
 }
