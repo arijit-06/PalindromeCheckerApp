@@ -1,4 +1,4 @@
-import java.lang.classfile.instruction.ReturnInstruction;
+import java.util.Stack;
 
 /**
  * ============================================================
@@ -21,44 +21,51 @@ import java.lang.classfile.instruction.ReturnInstruction;
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 10.0
+ * @version 11.0
  */
 
-public class PalindromeCheckerApp {
+class PalindromeChecker {
 
-    public static boolean isPalindrome(String input, int i) {
-        if(i >= input.length() / 2)
-            return true;
-        else if (input.charAt(i) != input.charAt(input.length()-i-1))
-            return  false;
-        else
-            return isPalindrome(input, i + 1);
-    }
+    public boolean checkPalindrome(String input) {
 
-    public static String preprocessing (String input) {
-        String s = "";
-        for (char c : input.toCharArray()){
-            if (c == ' ') continue;
-            else s += c;
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
         }
-        return s.toLowerCase();
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
+                return false;
+            }
+        }
+
+        return true;
     }
+}
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         System.out.println("WELCOME TO PALINDROME CHECKER APP MANAGEMENT SYSTEM");
-        System.out.println("version:8.0");
-        System.out.println("System instanced successful");
-        System.out.println();
+        System.out.println("Version: 11.0");
+        System.out.println("System initialized successfully\n");
 
-        String Palindrome = "race car";
+        PalindromeChecker checker = new PalindromeChecker();
 
-        if(isPalindrome(Palindrome, 0))    System.out.println("The string " + Palindrome + " is palindrome");
-        else System.out.println("The string is " + Palindrome + " not palindrome");
+        String word = "racecar";
 
-        Palindrome = "f1 racecar";
+        if (checker.checkPalindrome(word))
+            System.out.println(word + " is a palindrome");
+        else
+            System.out.println(word + " is not a palindrome");
 
-        if(isPalindrome(Palindrome, 0))    System.out.println("The string " + Palindrome + "  is palindrome");
-        else System.out.println("The string " + Palindrome + " is not palindrome");
+        word = "f1racecar";
+
+        if (checker.checkPalindrome(word))
+            System.out.println(word + " is a palindrome");
+        else
+            System.out.println(word + " is not a palindrome");
     }
 }
