@@ -21,7 +21,7 @@ import java.lang.classfile.instruction.ReturnInstruction;
  * The goal is to establish a clear startup flow.
  *
  * @author Oreoz
- * @version 9.0
+ * @version 10.0
  */
 
 public class PalindromeCheckerApp {
