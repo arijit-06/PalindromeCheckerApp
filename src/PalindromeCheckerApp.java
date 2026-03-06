@@ -35,6 +35,15 @@ public class PalindromeCheckerApp {
             return isPalindrome(input, i + 1);
     }
 
+    public static String preprocessing (String input) {
+        String s = "";
+        for (char c : input.toCharArray()){
+            if (c == ' ') continue;
+            else s += c;
+        }
+        return s.toLowerCase();
+    }
+
     public static void main(String[] args) {
 
         System.out.println("WELCOME TO PALINDROME CHECKER APP MANAGEMENT SYSTEM");
@@ -42,12 +51,12 @@ public class PalindromeCheckerApp {
         System.out.println("System instanced successful");
         System.out.println();
 
-        String Palindrome = "racecar";
+        String Palindrome = "race car";
 
         if(isPalindrome(Palindrome, 0))    System.out.println("The string " + Palindrome + " is palindrome");
         else System.out.println("The string is " + Palindrome + " not palindrome");
 
-        Palindrome = "f1racecar";
+        Palindrome = "f1 racecar";
 
         if(isPalindrome(Palindrome, 0))    System.out.println("The string " + Palindrome + "  is palindrome");
         else System.out.println("The string " + Palindrome + " is not palindrome");
